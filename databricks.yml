@@ -1,0 +1,25 @@
+bundle:
+  name: playground-bundle-cumbap
+
+include:
+  - resources/*.yml
+  - resources/**/*.yml
+
+variables:
+  cluster_key:
+    description: "cluster key that which is used to identify the job cluster"
+    default: "dev-dbkcluster-job"
+
+targets:
+  dev:
+    workspace:
+      root_path: "/Workspace/bundle/playground-bundle-cumbap/"
+    presets:
+      jobs_max_concurrent_runs: 1
+      tags:
+        Product: "bundle-cumbap"
+        Domain: "playground"
+        Environment: dev
+    default: true
+    run_as:
+      user_name: pauld05@hotmail.com
