@@ -1,0 +1,11 @@
+resources:
+  jobs:
+    job_example:
+      name: job-example-bundle # exclusive name, it must be unique to avoid any duplication
+      tasks:
+        - task_key: task_bundle-cumbap             # unique task key
+          notebook_task:
+            notebook_path: ../../notebooks/transformation_notebook.ipynb                 # out-of-the-box example notebook
+          parameters:
+            - name: env
+              default: "${bundle.target}"
