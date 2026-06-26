@@ -40,16 +40,10 @@ jobs:
       - name: Set up Databricks CLI
         uses: databricks/setup-cli@main
 
-      - name: Test Databricks Connection
-        run: |
-          databricks bundle validate -e dev
-      - name: Set up Databricks CLI
-        uses: databricks/setup-cli@main
-
       # Validate the Databricks Asset Bundle syntax
       - name: Validate Databricks Bundle
         run: |
-          databricks bundle validate -e dev
+          databricks bundle validate --target dev
 
   cd-dev:
     name: "CD: Deploy to Dev"
@@ -74,4 +68,4 @@ jobs:
       # 1. Deploy the Databricks Asset Bundle
       - name: Deploy Databricks Asset Bundle
         run: |
-          databricks bundle deploy -e dev
+          databricks bundle deploy --target dev
