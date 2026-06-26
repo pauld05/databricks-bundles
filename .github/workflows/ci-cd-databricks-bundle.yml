@@ -50,3 +50,28 @@ jobs:
       - name: Validate Databricks Bundle
         run: |
           databricks bundle validate -e dev
+
+  cd-dev:
+    name: "CD: Deploy to Dev"
+    needs: ci # Only runs if the CI job completely passes
+    # ONLY deploy if pushing to your main/develop branch (adjust branch name as needed)
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch')
+    
+    runs-on: ubuntu-latest
+
+    # Global environment variables for all steps in this job
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@main
+
+      # 1. Deploy the Databricks Asset Bundle
+      - name: Deploy Databricks Asset Bundle
+        run: |
+          databricks bundle deploy -e dev
