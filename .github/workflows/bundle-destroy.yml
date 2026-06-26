@@ -1,0 +1,49 @@
+name: Destroy Databricks Asset Bundle
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      confirm_destroy:
+        description: 'Type "DESTROY" to confirm you want to delete this bundle environment'
+        required: true
+        default: 'NO'
+      target_environment:
+        description: 'Target bundle environment to destroy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    
+    # Securely inject your Databricks secrets
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Safety Gate: Halt the pipeline if the user didn't explicitly type DESTROY
+      - name: Verify Destruction Intent
+        run: |
+          if [ "${{ github.event.inputs.confirm_destroy }}" != "DESTROY" ]; then
+            echo "CRITICAL: Destruction confirmation failed. You typed '${{ github.event.inputs.confirm_destroy }}' instead of 'DESTROY'."
+            exit 1
+          fi
+          echo "Confirmation verified. Proceeding to destroy the ${{ github.event.inputs.target_environment }} bundle."
+
+      # Install the Databricks CLI
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@main
+
+      # Run the destroy command targeting the specific environment selected
+      - name: Databricks Bundle Destroy
+        run: |
+          databricks bundle destroy --target ${{ github.event.inputs.target_environment }} --auto-approve
