@@ -13,26 +13,13 @@ variables:
 targets:
   development:
     workspace:
-      root_path: "/Workspace/bundle/playground-bundle-cumbap/"
+      root_path: "/Workspace/bundle/dev/playground-bundle-cumbap/"
     presets:
       jobs_max_concurrent_runs: 1
       tags:
         Product: "bundle-cumbap"
         Domain: "playground"
         Environment: dev
-    default: true
-    run_as:
-      user_name: paul.cumba05@gmail.com
-
-  qa:
-    workspace:
-      root_path: "/Workspace/bundle/qa/playground-bundle-cumbap/"
-    presets:
-      jobs_max_concurrent_runs: 1
-      tags:
-        Product: "bundle-cumbap"
-        Domain: "playground"
-        Environment: qa
     default: true
     run_as:
       user_name: paul.cumba05@gmail.com
