@@ -7,4 +7,4 @@ resources:
           notebook_task:
             notebook_path: ../../notebooks/transformation_notebook.ipynb
             base_parameters:
-              env: "${bundle.target}"
+              environment: "${bundle.target}"
