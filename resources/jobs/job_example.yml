@@ -5,6 +5,6 @@ resources:
       tasks:
         - task_key: task_bundle-cumbap
           notebook_task:
-            notebook_path: ../../../notebooks/transformation_notebook.ipynb
+            notebook_path: ../../notebooks/transformation_notebook.ipynb
             base_parameters:
               env: "${bundle.target}"
