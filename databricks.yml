@@ -13,7 +13,7 @@ variables:
 targets:
   development:
     workspace:
-      root_path: "/Workspace/bundle/playground-bundle-cumbap/"
+      root_path: "/Workspace/bundle/dev/playground-bundle-cumbap/"
     presets:
       jobs_max_concurrent_runs: 1
       tags:

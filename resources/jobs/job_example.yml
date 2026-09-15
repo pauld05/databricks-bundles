@@ -1,7 +1,7 @@
 resources:
   jobs:
     job_example:
-      name: job-example-bundle
+      name: ${bundle.target}-job-example-bundle
       tasks:
         - task_key: task_bundle-cumbap
           notebook_task:
