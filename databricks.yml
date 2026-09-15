@@ -11,7 +11,7 @@ variables:
     default: "dev-dbkcluster-job"
 
 targets:
-  dev:
+  development:
     workspace:
       root_path: "/Workspace/bundle/playground-bundle-cumbap/"
     presets:
@@ -22,4 +22,4 @@ targets:
         Environment: dev
     default: true
     run_as:
-      user_name: pauld05@hotmail.com
+      user_name: paul.cumba05@gmail.com

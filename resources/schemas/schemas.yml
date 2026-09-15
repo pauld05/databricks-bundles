@@ -2,15 +2,15 @@ resources:
   schemas:
     bronze:
       name: "bundle_bronze"
-      catalog_name: "${bundle.target}_playground"
+      catalog_name: "${bundle.target}"
       comment: Raw data (bronze)
 
     silver:
       name: "bundle_silver"
-      catalog_name: "${bundle.target}_playground"
+      catalog_name: "${bundle.target}"
       comment: Cleaned and enriched data (silver)
 
     gold:
       name: "bundle_gold"
-      catalog_name: "${bundle.target}_playground"
+      catalog_name: "${bundle.target}"
       comment: Data ready for analytics consumption (gold)
